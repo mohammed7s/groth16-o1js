@@ -32,8 +32,19 @@ import {ForeignField } from "./foreign_field";
     bn128_FQ2 = new ForeignField (field_modulus, fq2_coeffs)
     bn128_FQ12 = new ForeignField (field_modulus,fq12_coeffs)
 
-    
-
-
+    // check that a point is on the curve 
+    @method is_on_curve(pt: point2D, b: Field) : boolean {
+      if (isInf(pt)) {
+        return true 
+      }
+    }
+    // Elliptic curve doubling 
+    @method double (pt) 
+    @method add (p1, p2) 
+    @method multiply(pt, n) 
+    @method circuitValueEquals(p1, p2)
+    @method neg (pt)
+    @method twist (pt: Point2D)
+  
 
   }
