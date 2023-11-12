@@ -1,3 +1,3 @@
-import { Verifier } from './Verifier.js';
+import { BN254 } from './Verifier.js';
 
-export { Verifier };
+export { BN254 };

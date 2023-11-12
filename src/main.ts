@@ -1,4 +1,4 @@
-import { Verifier } from './Verifier.js';
+import { BN254 } from './Verifier.js';
 import {
   Field,
   Mina,
@@ -29,28 +29,48 @@ const zkAppPrivateKey = PrivateKey.random();
 const zkAppAddress = zkAppPrivateKey.toPublicKey();
 
 // create an instance of Square - and deploy it to zkAppAddress
-const zkAppInstance = new Verifier(zkAppAddress);
-const deployTxn = await Mina.transaction(deployerAccount, () => {
-  AccountUpdate.fundNewAccount(deployerAccount);
-  zkAppInstance.deploy();
-});
-await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
+// const zkAppInstance = new Verifier(zkAppAddress);
+// const deployTxn = await Mina.transaction(deployerAccount, () => {
+//   AccountUpdate.fundNewAccount(deployerAccount);
+//   zkAppInstance.deploy();
+// });
+// await deployTxn.sign([deployerKey, zkAppPrivateKey]).send();
 
 // Transaction calling the function verifyProof
-const txn1 = await Mina.transaction(senderAccount, () => {
-  zkAppInstance.verifyProof(left, right);
-}); 
-await txn1.prove(); 
-await txn1.sign([senderKey]).send();
+// const txn1 = await Mina.transaction(senderAccount, () => {
+//   zkAppInstance.verifyProof(left, right);
+// });
+// await txn1.prove();
+// await txn1.sign([senderKey]).send();
+//
+// console.log("outcome: ", zkAppInstance.outcome.get().toString());
+//
+// // const returnedField = zkAppInstance.outcome.get();
+// // const expectedField = new EtherField(16n)
+// // console.log(returnedField.assertEquals(expectedField));
+//
+// const addition = zkAppInstance.outcome.get();
+// console.log(addition);
+// console.log(expected);
+//
+// expect(addition).toEqual(expected);
 
-console.log("outcome: ", zkAppInstance.outcome.get().toString());
+const bnInstance = new BN254(zkAppAddress);
+const bnDeployTxn = await Mina.transaction(deployerAccount, () => {
+  AccountUpdate.fundNewAccount(deployerAccount);
+  bnInstance.deploy();
+});
+await bnDeployTxn.sign([deployerKey, zkAppPrivateKey]).send();
 
-// const returnedField = zkAppInstance.outcome.get();
-// const expectedField = new EtherField(16n)
-// console.log(returnedField.assertEquals(expectedField));
+const txn2 = await Mina.transaction(senderAccount, () => {
+  bnInstance.get_bn254_prime(Field(51n), Field(5n));
+});
+await txn2.prove();
+await txn2.sign(
+  [senderKey]).send();
 
-const addition = zkAppInstance.outcome.get();
-console.log(addition);
-console.log(expected);
+// console.log("prime: ", bnInstance.prime.toString());
 
-expect(addition).toEqual(expected);
+
+
+
