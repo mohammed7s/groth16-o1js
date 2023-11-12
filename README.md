@@ -1,6 +1,19 @@
 # Mina zkApp: Groth16
 
-This template uses TypeScript.
+
+Use the o1js fork on this repo: git@github.com:Sulejman/o1js.git
+Checkout foreign_ec_ops
+
+New EtherField is defined which defines the bn254 field.
+
+
+TO DO: 
+
+- Introduce a class that extends Foreign-Field with extentions (quadratic extention) - O1js library to support pairings 
+- Pairings library (exponentiation , loop within constraints 2^16) 
+- Groth 16 verifier logic 
+
+
 
 ## How to build
 
@@ -24,3 +37,7 @@ npm run coverage
 ## License
 
 [Apache-2.0](LICENSE)
+
+
+
+
