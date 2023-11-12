@@ -1,7 +1,7 @@
 # Mina zkApp: Groth16
 
 
-Use the o1js fork on this repo: git@github.com:Sulejman/o1js.git
+Use the o1js fork on this repo: www.github.com/Sulejman/o1js.git
 Checkout foreign_ec_ops
 
 New EtherField is defined which defines the bn254 field.
