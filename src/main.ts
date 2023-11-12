@@ -27,7 +27,7 @@ const bnDeployTxn = await Mina.transaction(deployerAccount, () => {
 await bnDeployTxn.sign([deployerKey, zkAppPrivateKey]).send();
 
 const txn2 = await Mina.transaction(senderAccount, () => {
-  bnInstance.get_bn254_prime(Field(51n), Field(5n));
+  bnInstance.get_bn254_prime(new EtherField(51n), new EtherField(5n));
 });
 await txn2.prove();
 await txn2.sign([senderKey]).send();
