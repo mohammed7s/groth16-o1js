@@ -3,12 +3,10 @@ import {
   Field,
   Mina,
   PrivateKey,
-  AccountUpdate, EtherField
+  AccountUpdate, EtherField, ForeignField, ForeignGroup
 } from 'o1js';
-import { ForeignGroup } from "../build/src/o1js/src/lib/elliptic-curve";
 
 import * as assert from "assert";
-import { ForeignField } from "../build/src/foreign_field";
 
 const useProof = false;
 

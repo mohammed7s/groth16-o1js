@@ -4,9 +4,8 @@ import {
   SmartContract,
   state,
   State,
-  method, EtherField
+  method, ForeignGroup
 } from "o1js";
-import { ForeignGroup } from "../build/src/o1js/src/lib/elliptic-curve";
 
 export class Verifier extends SmartContract {
   // @state(Field) num = State<Field>();
